@@ -63,7 +63,6 @@ public class SecurityConfig {
                         .allowCredentials(true)
                         .allowedOriginPatterns(
                                 "http://localhost:5000",
-                                "http://localhost:8080",
                                 "https://musify-final.netlify.app")
                         .allowedMethods("*")
                         .allowedHeaders("*");
@@ -80,15 +79,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/auth/**"
-                                , "/swagger-ui/**", "/v3/api-docs/**",
-                                "/artists/**", "/genres/**",
-                                "/album-lists/**", "/album-ratings/**",
-                                "/reviews/**", "/followers/**"
+                                , "/swagger-ui/**", "/v3/api-docs/**"
                         )
                         .permitAll()
                         .requestMatchers(
                                 "/artists/**", "/albums/**",
-                                "/users/**"
+                                "/users/**", "/genres/**",
+                                "/album-lists/**", "/album-ratings/**",
+                                "/reviews/**", "/followers/**"
                         )
                         .permitAll().anyRequest().authenticated()
                 );
