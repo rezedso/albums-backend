@@ -61,9 +61,10 @@ public class SecurityConfig {
             public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowCredentials(true)
-                        .allowedOriginPatterns(
-                                "http://localhost:5000",
-                                "https://musify-final.netlify.app")
+//                        .allowedOriginPatterns(
+//                                "http://localhost:5000",
+//                                "https://musify-final.netlify.app")
+                        .allowedOrigins("*")
                         .allowedMethods("*")
                         .allowedHeaders("*");
             }
