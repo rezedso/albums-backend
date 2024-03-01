@@ -63,7 +63,8 @@ public class SecurityConfig {
                         .allowCredentials(true)
                         .allowedOriginPatterns(
                                 "http://localhost:5000",
-                                "http://localhost:8080")
+                                "http://localhost:8080",
+                                "https://musify-final.netlify.app")
                         .allowedMethods("*")
                         .allowedHeaders("*");
             }
