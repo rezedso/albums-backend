@@ -35,6 +35,7 @@ public class ModelMapperConfig {
                 .createTypeMap(AlbumList.class, AlbumListDto.class);
         albumListTypeMap.addMapping(src -> src.getUser().getId(), AlbumListDto::setUserId);
         albumListTypeMap.addMapping(src -> src.getUser().getUsername(), AlbumListDto::setUsername);
+        albumListTypeMap.addMapping(src -> src.getUser().getId(), AlbumListDto::setUserId);
 
 
         TypeMap<AlbumRating, AlbumRatingSummaryDto> albumRatingTypeMap = modelMapper

@@ -6,6 +6,7 @@ import com.example.albums.dto.request.UpdateArtistDto;
 import com.example.albums.dto.response.ArtistDto;
 import com.example.albums.dto.response.PageDto;
 import com.example.albums.dto.response.RecentArtistDto;
+import com.example.albums.entity.Album;
 import com.example.albums.entity.Artist;
 import com.example.albums.entity.Genre;
 import com.example.albums.exception.ResourceNotFoundException;
@@ -171,9 +172,18 @@ public class ArtistServiceImpl implements IArtistService {
 
         if (!artist.getOriginCountry().equals(request.getOriginCountry())) {
             artist.setOriginCountry(request.getOriginCountry());
+            updateArtistAlbumsCountry(artist,request.getOriginCountry());
         }
 
         return modelMapper.map(artist, ArtistDto.class);
+    }
+
+    private void updateArtistAlbumsCountry(Artist artist,String newCountry){
+        List<Album> albums = albumRepository.findByArtist(artist);
+        for (Album album: albums){
+            album.setOriginCountry(newCountry);
+        }
+        albumRepository.saveAll(albums);
     }
 
     @Override
